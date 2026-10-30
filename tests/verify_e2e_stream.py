@@ -17,7 +17,13 @@ def main():
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE
     )
-    time.sleep(3.5)
+    # Poll for server startup
+    for _ in range(30):
+        try:
+            urllib.request.urlopen("http://127.0.0.1:8083/api/health", timeout=1)
+            break
+        except Exception:
+            time.sleep(0.4)
 
     try:
         # 1. Test index page

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ClassMind AI — Smart Classroom Intelligence Platform</title>
   <meta name="description" content="Privacy-first, offline edge classroom attendance and engagement intelligence platform with explainable teaching recommendations.">
   
-  <!-- Modern Typography -->
+  <!-- Premium Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -16,171 +16,260 @@
 </head>
 <body class="dark-theme">
   <!-- Toast Notification Container -->
-  <div id="toast-container" class="toast-container"></div>
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
 
-  <!-- App Wrapper -->
+  <!-- App Layout -->
   <div class="app-layout">
-    <!-- Sidebar Navigation -->
-    <aside class="sidebar">
+    <!-- 1. LEFT SIDEBAR NAVIGATION -->
+    <aside class="sidebar" id="main-sidebar">
+      <!-- Brand & Header -->
       <div class="sidebar-brand">
         <div class="brand-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
           </svg>
         </div>
         <div class="brand-text">
-          <span class="brand-name">ClassMind <span class="ai-badge">AI</span></span>
-          <span class="brand-tagline">Privacy-First Edge Intelligence</span>
+          <div class="brand-title">ClassMind <span class="ai-badge">AI</span></div>
+          <div class="brand-tagline">Education Management</div>
         </div>
       </div>
 
-      <nav class="sidebar-nav">
+      <!-- Main Navigation Links (8 Sections) -->
+      <nav class="sidebar-nav" aria-label="Main Navigation">
+        <!-- 1. Overview -->
         <button class="nav-item active" data-view="view-overview" id="nav-overview">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/>
             <rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/>
           </svg>
-          <span>Overview</span>
+          <span class="nav-label">Overview</span>
         </button>
 
+        <!-- 2. Live Classroom -->
         <button class="nav-item" data-view="view-live" id="nav-live">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="2"/>
             <path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14"/>
           </svg>
-          <span>Live Classroom</span>
-          <span class="badge-dot pulse"></span>
+          <span class="nav-label">Live Classroom</span>
+          <span class="badge-dot pulse" title="Live stream available"></span>
         </button>
 
+        <!-- 3. Attendance Management -->
         <button class="nav-item" data-view="view-attendance" id="nav-attendance">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/>
             <polyline points="17 11 19 13 23 9"/>
           </svg>
-          <span>Attendance</span>
+          <span class="nav-label">Attendance</span>
         </button>
 
+        <!-- 4. Engagement Analytics -->
         <button class="nav-item" data-view="view-analytics" id="nav-analytics">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
           </svg>
-          <span>Engagement Analytics</span>
+          <span class="nav-label">Engagement Analytics</span>
         </button>
 
+        <!-- 5. AI Teaching Assistant -->
         <button class="nav-item" data-view="view-copilot" id="nav-copilot">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a8 8 0 0 0-8 8c0 3.37 2.07 6.27 5 7.46V20a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-2.54c2.93-1.19 5-4.09 5-7.46a8 8 0 0 0-8-8z"/>
+            <line x1="9.5" y1="9" x2="9.5" y2="9.01"/>
+            <line x1="14.5" y1="9" x2="14.5" y2="9.01"/>
+            <path d="M10 13c.5.5 1.5 1 2 1s1.5-.5 2-1"/>
           </svg>
-          <span>Teaching Copilot</span>
+          <span class="nav-label">AI Teaching Assistant</span>
           <span class="badge-count" id="nav-rec-count">0</span>
         </button>
 
+        <!-- 6. Session History -->
         <button class="nav-item" data-view="view-history" id="nav-history">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
           </svg>
-          <span>Session History</span>
+          <span class="nav-label">Session History</span>
         </button>
 
-        <button class="nav-item" data-view="view-settings" id="nav-settings">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+        <!-- 7. Student Management -->
+        <button class="nav-item" data-view="view-students" id="nav-students">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
           </svg>
-          <span>Settings & Privacy</span>
+          <span class="nav-label">Student Management</span>
+        </button>
+
+        <!-- 8. Settings & Privacy -->
+        <button class="nav-item" data-view="view-settings" id="nav-settings">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+          </svg>
+          <span class="nav-label">Settings & Privacy</span>
         </button>
       </nav>
 
-      <!-- Sidebar Footer Hardware Status -->
+      <!-- Sidebar Footer Hardware & Privacy Status -->
       <div class="sidebar-footer">
-        <div class="hardware-pill">
-          <span class="sensor-indicator sensor-live" id="cam-status-dot"></span>
-          <span class="sensor-name" id="cam-status-text">Camera Active</span>
+        <div class="hardware-pill-group">
+          <div class="hardware-pill" title="Camera sensor status">
+            <span class="sensor-indicator sensor-live" id="cam-status-dot"></span>
+            <span class="sensor-name" id="cam-status-text">Camera Active</span>
+          </div>
+          <div class="hardware-pill" title="Microphone sensor status">
+            <span class="sensor-indicator sensor-live" id="mic-status-dot"></span>
+            <span class="sensor-name" id="mic-status-text">Mic Active</span>
+          </div>
         </div>
-        <div class="hardware-pill">
-          <span class="sensor-indicator sensor-live" id="mic-status-dot"></span>
-          <span class="sensor-name" id="mic-status-text">Mic Active</span>
-        </div>
-        <div class="system-security-tag">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <div class="system-security-tag" title="All processing occurs offline on your local host">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
             <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
           </svg>
-          <span>Offline Edge Processing</span>
+          <span>100% Offline Edge Processing</span>
         </div>
       </div>
     </aside>
 
-    <!-- Main Content Area -->
+    <!-- 2. MAIN CONTENT AREA -->
     <main class="main-content">
-      <!-- Top Navigation & Control Header -->
+      <!-- TOP NAVIGATION BAR -->
       <header class="top-header">
-        <div class="session-info-bar">
-          <div class="session-status-badge status-live" id="header-session-status">
-            <span class="pulse-ring"></span>
-            <span id="session-status-text">LIVE SESSION</span>
-          </div>
-          <div class="session-meta">
-            <h2 id="header-session-title">Lecture 1: Multimodal Intelligence & Edge AI</h2>
-            <div class="session-chips">
-              <span class="chip" id="header-session-id">ID: SESSION-LIVE-01</span>
-              <span class="chip chip-time" id="header-session-duration">00:00:00</span>
-              <span class="chip chip-mode" id="header-mode-badge">Simulation Mode</span>
+        <div class="header-left">
+          <!-- Mobile Sidebar Toggle -->
+          <button class="btn btn-icon btn-ghost mobile-menu-btn" id="btn-toggle-sidebar" aria-label="Toggle Navigation">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+          </button>
+
+          <!-- Session Info / Breadcrumbs -->
+          <div class="session-info-bar">
+            <div class="session-status-badge status-live" id="header-session-status">
+              <span class="pulse-ring"></span>
+              <span id="session-status-text">LIVE SESSION</span>
+            </div>
+            <div class="session-meta">
+              <h2 id="header-session-title">Lecture 1: Multimodal Intelligence & Edge AI</h2>
+              <div class="session-chips">
+                <span class="chip" id="header-session-id">ID: SESSION-LIVE-01</span>
+                <span class="chip chip-time" id="header-session-duration">00:00:00</span>
+                <span class="chip chip-mode" id="header-mode-badge">Simulation Mode</span>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="header-actions">
+        <div class="header-right">
+          <!-- Global Search Filter -->
+          <div class="top-search-wrapper">
+            <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            <input type="text" id="top-global-search" class="top-search-input" placeholder="Search students, signals...">
+          </div>
+
           <!-- Session Controls -->
           <div class="btn-group">
             <button class="btn btn-icon btn-action" id="btn-pause-session" title="Pause Monitoring">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
                 <rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>
               </svg>
               <span>Pause</span>
             </button>
             <button class="btn btn-icon btn-action hidden" id="btn-resume-session" title="Resume Monitoring">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
                 <polygon points="5 3 19 12 5 21 5 3"/>
               </svg>
               <span>Resume</span>
             </button>
             <button class="btn btn-icon btn-danger" id="btn-stop-session" title="Stop & Finalize Session">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
                 <rect x="5" y="5" width="14" height="14" rx="2"/>
               </svg>
               <span>Stop</span>
             </button>
           </div>
 
+          <!-- Face Blur Quick Toggle -->
           <button class="btn btn-secondary btn-icon" id="btn-quick-privacy" title="Toggle Face Blurring">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
             </svg>
             <span id="header-privacy-label">Blur: Off</span>
           </button>
 
-          <button class="btn btn-primary btn-icon" id="btn-new-session-modal">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <!-- New Session Button -->
+          <button class="btn btn-primary btn-icon" id="btn-new-session-modal" title="Start New Session">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
             </svg>
             <span>New Session</span>
           </button>
+
+          <!-- Theme Toggle Switcher Button -->
+          <button class="btn btn-icon btn-theme-toggle" id="btn-theme-toggle" title="Switch Theme (Light / Dark)">
+            <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="5"/>
+              <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+              <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+            </svg>
+            <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
+          </button>
+
+          <!-- Notifications Alert Bell -->
+          <div class="notifications-wrapper">
+            <button class="btn btn-icon btn-ghost" id="btn-notifications" title="Recent Alerts & Copilot">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+              </svg>
+              <span class="notification-indicator" id="top-notification-dot"></span>
+            </button>
+            <div class="notification-dropdown" id="notification-dropdown">
+              <div class="notif-header">
+                <h4>Recent Classroom Alerts</h4>
+                <button class="btn-clear-notif" id="btn-clear-notif">Clear</button>
+              </div>
+              <div class="notif-list" id="top-notification-list">
+                <div class="notif-empty">No unread alerts.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Instructor Profile Badge -->
+          <div class="instructor-profile">
+            <div class="instructor-avatar">PJ</div>
+            <div class="instructor-details">
+              <span class="instructor-name">Prof. Johnson</span>
+              <span class="instructor-dept">Computer Science</span>
+            </div>
+          </div>
         </div>
       </header>
 
-      <!-- View Containers (7 Tabs) -->
+      <!-- VIEW PANELS (8 SECTIONS) -->
       <div class="view-content-wrapper">
 
         <!-- ======================================================= -->
-        <!-- VIEW A: OVERVIEW DASHBOARD                              -->
+        <!-- 1. OVERVIEW DASHBOARD                                   -->
         <!-- ======================================================= -->
         <section id="view-overview" class="view-panel active">
-          <!-- Top KPI Stat Grid -->
+          <!-- Top KPI Stat Grid (7 Metrics) -->
           <div class="kpi-grid">
-            <!-- 1. Composite Engagement Index -->
+            <!-- 1. Classroom Activity Score -->
             <div class="card kpi-card">
               <div class="kpi-header">
-                <span class="kpi-label">Classroom Engagement</span>
+                <span class="kpi-label">Classroom Activity</span>
                 <span class="trend-pill steady" id="kpi-trend">Steady</span>
               </div>
               <div class="kpi-body">
@@ -193,20 +282,40 @@
                 </div>
               </div>
               <div class="kpi-footer">
-                <span>Multimodal Vision & Audio Indicator</span>
+                <span>Multimodal Vision & Acoustic Proxy</span>
               </div>
             </div>
 
-            <!-- 2. Attendance Counts -->
+            <!-- 2. Present Students & Attendance Rate -->
             <div class="card kpi-card">
               <div class="kpi-header">
-                <span class="kpi-label">Verified Attendance</span>
+                <span class="kpi-label">Present Students</span>
                 <span class="badge-rate" id="overview-attendance-rate">0%</span>
+              </div>
+              <div class="kpi-body">
+                <div class="kpi-value-container">
+                  <span class="kpi-value" id="overview-present-cnt">0</span>
+                  <span class="kpi-subtext" id="overview-enrolled-summary">of 6 enrolled</span>
+                </div>
+                <div class="progress-track">
+                  <div class="progress-bar bar-emerald" id="overview-attendance-bar" style="width: 0%;"></div>
+                </div>
+              </div>
+              <div class="kpi-footer">
+                <span>Verified by Sustained Presence</span>
+              </div>
+            </div>
+
+            <!-- 3. Absent & Partial Breakdown -->
+            <div class="card kpi-card">
+              <div class="kpi-header">
+                <span class="kpi-label">Attendance Breakdown</span>
+                <span class="badge-sub">Status Tally</span>
               </div>
               <div class="kpi-body">
                 <div class="attendance-breakdown">
                   <div class="att-stat stat-present">
-                    <span class="stat-num" id="overview-present-cnt">0</span>
+                    <span class="stat-num" id="overview-present-stat">0</span>
                     <span class="stat-lbl">Present</span>
                   </div>
                   <div class="att-stat stat-partial">
@@ -224,14 +333,14 @@
                 </div>
               </div>
               <div class="kpi-footer">
-                <span id="overview-enrolled-summary">Enrolled: 6 Students</span>
+                <span>Active Observation Window</span>
               </div>
             </div>
 
-            <!-- 3. Visual Orientation Proxy -->
+            <!-- 4. Visual Attention Proxy (Head-Pose) -->
             <div class="card kpi-card">
               <div class="kpi-header">
-                <span class="kpi-label">Visual Attention Proxy</span>
+                <span class="kpi-label">Visual Orientation</span>
                 <span class="badge-sub" id="overview-head-state">Attentive</span>
               </div>
               <div class="kpi-body">
@@ -244,14 +353,14 @@
                 </div>
               </div>
               <div class="kpi-footer">
-                <span>Head Yaw & Pitch Gaze Orientation</span>
+                <span>Gaze Direction & Board Alignment</span>
               </div>
             </div>
 
-            <!-- 4. Acoustic Pacing -->
+            <!-- 5. Audio / Acoustic Pacing -->
             <div class="card kpi-card">
               <div class="kpi-header">
-                <span class="kpi-label">Classroom Audio Activity</span>
+                <span class="kpi-label">Acoustic Activity</span>
                 <span class="badge-sub" id="overview-audio-state">Silent</span>
               </div>
               <div class="kpi-body">
@@ -269,16 +378,49 @@
             </div>
           </div>
 
-          <!-- Mid Section: Live Preview & Quick Copilot Feed -->
+          <!-- Mid Section: Timeline Chart & Mini Stream / Recommendations -->
+          <div class="overview-chart-section">
+            <div class="card chart-card">
+              <div class="card-header card-header-flex">
+                <div>
+                  <h3>Classroom Activity Trend</h3>
+                  <p class="subtitle-small">Real-time multimodal fusion timeline (Vision + Audio dynamics)</p>
+                </div>
+                <div class="chart-controls">
+                  <div class="btn-group">
+                    <button class="btn btn-xs btn-chart-range active" data-points="30">30s</button>
+                    <button class="btn btn-xs btn-chart-range" data-points="60">60s</button>
+                    <button class="btn btn-xs btn-chart-range" data-points="120">120s</button>
+                  </div>
+                </div>
+              </div>
+              <div class="chart-wrapper">
+                <canvas id="overview-timeseries-chart"></canvas>
+              </div>
+              <div class="chart-legend-footer">
+                <span class="legend-item"><span class="legend-dot dot-eng"></span> Composite Activity</span>
+                <span class="legend-item"><span class="legend-dot dot-pose"></span> Visual Orientation</span>
+                <span class="legend-item"><span class="legend-dot dot-motion"></span> Movement</span>
+                <span class="legend-item"><span class="legend-dot dot-audio"></span> Acoustic Energy</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dual Grid: Mini Video Stream & AI Teaching Assistant Recommendations -->
           <div class="overview-dual-grid">
-            <!-- Mini Live Feed & Activity Timeline -->
+            <!-- Mini Live Stream Feed -->
             <div class="card card-hud-preview">
               <div class="card-header">
                 <div class="header-title">
                   <span class="pulse-indicator"></span>
-                  <h3>Live Classroom Activity Stream</h3>
+                  <h3>Live Classroom Monitoring</h3>
                 </div>
-                <button class="btn btn-sm btn-secondary" onclick="switchView('view-live')">Full Screen View</button>
+                <button class="btn btn-sm btn-secondary" onclick="switchView('view-live')">
+                  <span>Open Full View</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="9 18 15 12 9 6"/>
+                  </svg>
+                </button>
               </div>
               <div class="mini-stream-container">
                 <img id="overview-video-feed" alt="Classroom Video Stream">
@@ -289,7 +431,7 @@
               </div>
             </div>
 
-            <!-- Recent Teaching Recommendations -->
+            <!-- Recent AI Recommendations -->
             <div class="card card-copilot-preview">
               <div class="card-header">
                 <div class="header-title">
@@ -297,7 +439,7 @@
                     <circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/>
                     <line x1="12" y1="8" x2="12.01" y2="8"/>
                   </svg>
-                  <h3>Teaching Copilot Recommendations</h3>
+                  <h3>Latest AI Teaching Recommendations</h3>
                 </div>
                 <button class="btn btn-sm btn-secondary" onclick="switchView('view-copilot')">View All</button>
               </div>
@@ -309,18 +451,30 @@
               </div>
             </div>
           </div>
+
+          <!-- Bottom: Recent Classroom Events Log -->
+          <div class="card card-events-log">
+            <div class="card-header">
+              <h3>Recent Classroom Activity Log</h3>
+              <span class="badge-sub" id="recent-events-count">Live Telemetry</span>
+            </div>
+            <div class="events-timeline" id="overview-events-timeline">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
         </section>
 
         <!-- ======================================================= -->
-        <!-- VIEW B: LIVE CLASSROOM FEED                             -->
+        <!-- 2. LIVE CLASSROOM                                       -->
         <!-- ======================================================= -->
         <section id="view-live" class="view-panel">
           <div class="live-layout">
+            <!-- Main Live Video Display Card -->
             <div class="card video-main-card">
-              <div class="card-header">
+              <div class="card-header card-header-flex">
                 <div class="header-title">
                   <span class="pulse-indicator"></span>
-                  <h3>Real-Time HUD Video Stream</h3>
+                  <h3>Real-Time Live Classroom Feed</h3>
                 </div>
                 <div class="feed-control-pills">
                   <span class="tag" id="live-tag-source">Source: Simulation</span>
@@ -329,6 +483,8 @@
                   <span class="tag" id="live-tag-anon">Privacy: Active (Blur)</span>
                 </div>
               </div>
+
+              <!-- Stream Display Wrapper -->
               <div class="video-display-wrapper" id="video-display-wrapper">
                 <!-- Video Loading Overlay -->
                 <div class="video-overlay" id="video-stream-loading">
@@ -345,40 +501,61 @@
                 </div>
                 <!-- Live Stream Video Image -->
                 <img id="live-main-stream" alt="Real-Time Classroom Video Stream">
-                <!-- Live HUD Badge Overlay -->
+                <!-- Live HUD Glass Overlay -->
                 <div class="stream-glass-overlay live-hud-overlay">
                   <span id="live-stream-fps-badge">-- FPS</span>
                   <span id="live-stream-res-badge">640x480</span>
                   <span id="live-stream-latency-badge">-- ms</span>
                 </div>
               </div>
+
+              <!-- Live Video Toolbar Controls -->
               <div class="video-toolbar">
                 <div class="video-toolbar-left">
                   <span class="badge-dot" id="video-feed-status-dot"></span>
                   <span id="video-feed-status">Connecting to stream...</span>
+                  <span class="mic-status-badge" id="live-mic-status-badge">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                      <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                    </svg>
+                    <span id="live-mic-status-text">Mic Active</span>
+                  </span>
                 </div>
                 <div class="video-toolbar-right">
+                  <!-- Camera Source Dropdown -->
+                  <div class="toolbar-control-item">
+                    <label for="select-camera-source" class="sr-only">Camera Source</label>
+                    <select id="select-camera-source" class="select-sm">
+                      <option value="sim">Simulation Engine</option>
+                      <option value="0">Default Webcam (Index 0)</option>
+                      <option value="1">Secondary Camera (Index 1)</option>
+                    </select>
+                  </div>
                   <button class="btn btn-sm btn-secondary" id="btn-toggle-camera-src">Toggle Source (Hardware / Sim)</button>
                   <button class="btn btn-sm btn-secondary" id="btn-toggle-blur-live">Toggle Blur</button>
                 </div>
               </div>
             </div>
 
-            <!-- Live HUD Participant Breakdown -->
+            <!-- Live Tracked Participants Sidebar -->
             <div class="card live-side-card">
               <div class="card-header">
-                <h3>Tracked Participants</h3>
+                <div>
+                  <h3>Tracked Participants</h3>
+                  <p class="subtitle-small">Computer vision bounding boxes & head pose</p>
+                </div>
                 <span class="badge-sub" id="live-participant-count">0 Tracked</span>
               </div>
               <div class="participants-list" id="live-participants-container">
-                <div class="empty-state">No face tracks currently detected.</div>
+                <div class="empty-state">No face tracks currently detected in camera view.</div>
               </div>
             </div>
           </div>
         </section>
 
         <!-- ======================================================= -->
-        <!-- VIEW C: ATTENDANCE MANAGEMENT                           -->
+        <!-- 3. ATTENDANCE MANAGEMENT                                -->
         <!-- ======================================================= -->
         <section id="view-attendance" class="view-panel">
           <div class="card attendance-full-card">
@@ -388,7 +565,12 @@
                 <p class="subtitle-small">Temporal verification filters transient glances. Manual instructor overrides preserved with audit trail.</p>
               </div>
               <div class="attendance-actions">
-                <input type="text" id="attendance-search" class="input-search" placeholder="Search by name or roll no...">
+                <div class="search-input-group">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                  </svg>
+                  <input type="text" id="attendance-search" class="input-search" placeholder="Search by name, roll no, or ID...">
+                </div>
                 <select id="attendance-filter-status" class="select-filter">
                   <option value="ALL">All Statuses</option>
                   <option value="Present">Present</option>
@@ -421,13 +603,15 @@
               <table class="data-table" id="table-attendance">
                 <thead>
                   <tr>
-                    <th>Roll No</th>
-                    <th>Student Name</th>
+                    <th class="sortable" data-sort="roll_no">Roll No <span class="sort-icon">⇅</span></th>
+                    <th class="sortable" data-sort="name">Student Name <span class="sort-icon">⇅</span></th>
                     <th>Section</th>
-                    <th>Status</th>
-                    <th>Sustained Pres.</th>
+                    <th class="sortable" data-sort="status">Status <span class="sort-icon">⇅</span></th>
+                    <th class="sortable" data-sort="sustained_seconds">Sustained Pres. <span class="sort-icon">⇅</span></th>
                     <th>Window %</th>
                     <th>Confidence</th>
+                    <th>First Seen</th>
+                    <th>Last Seen</th>
                     <th>Flags</th>
                     <th>Verification Reason</th>
                     <th>Actions</th>
@@ -442,15 +626,29 @@
         </section>
 
         <!-- ======================================================= -->
-        <!-- VIEW D: ENGAGEMENT ANALYTICS                            -->
+        <!-- 4. ENGAGEMENT ANALYTICS                                 -->
         <!-- ======================================================= -->
         <section id="view-analytics" class="view-panel">
+          <!-- Mandatory Pedagogical / Legal Disclaimer Banner -->
+          <div class="disclaimer-banner">
+            <div class="disclaimer-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/>
+                <line x1="12" y1="8" x2="12.01" y2="8"/>
+              </svg>
+            </div>
+            <div class="disclaimer-text">
+              <strong>Experimental Classroom Indicator:</strong> These metrics reflect aggregate classroom pacing, body motion dynamics, and acoustic energy to assist instructor reflection. They are <em>not</em> definitive measurements of individual cognitive attention, intelligence, or emotional state.
+            </div>
+          </div>
+
           <div class="analytics-layout">
+            <!-- Full Interactive Time-Series Chart -->
             <div class="card chart-full-card">
               <div class="card-header card-header-flex">
                 <div>
-                  <h3>Classroom Activity and Attention Indicators</h3>
-                  <p class="subtitle-small">Assisted multimodal signal fusion timeline. Experimental instructional pacing guide.</p>
+                  <h3>Multimodal Classroom Telemetry Timeline</h3>
+                  <p class="subtitle-small">Continuous sensory signal fusion over time (Vision + Head Pose + Motion + Audio)</p>
                 </div>
                 <div class="chart-controls">
                   <div class="btn-group">
@@ -473,6 +671,7 @@
 
             <!-- Signal Breakdown & Diagnostic Cards -->
             <div class="analytics-sub-grid">
+              <!-- Multimodal Weight Contribution -->
               <div class="card stat-breakdown-card">
                 <h4>Dynamic Multimodal Weight Contribution</h4>
                 <div class="weight-bars-container" id="analytics-weights-breakdown">
@@ -480,8 +679,9 @@
                 </div>
               </div>
 
+              <!-- Sensory Signal Coverage -->
               <div class="card stat-breakdown-card">
-                <h4>Sensory Signal Coverage & Confidence</h4>
+                <h4>Sensory Signal Coverage & Health</h4>
                 <div class="sensor-coverage-box">
                   <div class="coverage-circle" id="coverage-percentage-badge">100%</div>
                   <div class="coverage-details">
@@ -490,12 +690,35 @@
                   </div>
                 </div>
               </div>
+
+              <!-- Historical Session Comparison -->
+              <div class="card stat-breakdown-card">
+                <h4>Historical Session Benchmarks</h4>
+                <div class="historical-comparison-list">
+                  <div class="comp-row">
+                    <span>This Session (Active)</span>
+                    <strong id="comp-this-session">--%</strong>
+                  </div>
+                  <div class="comp-row">
+                    <span>Last Session</span>
+                    <strong>74.2%</strong>
+                  </div>
+                  <div class="comp-row">
+                    <span>Course Average (Past 10)</span>
+                    <strong>71.8%</strong>
+                  </div>
+                  <div class="comp-row">
+                    <span>Baseline Target</span>
+                    <strong>65.0%</strong>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
         <!-- ======================================================= -->
-        <!-- VIEW E: TEACHING COPILOT                                -->
+        <!-- 5. AI TEACHING ASSISTANT                                -->
         <!-- ======================================================= -->
         <section id="view-copilot" class="view-panel">
           <div class="card copilot-full-card">
@@ -519,22 +742,40 @@
         </section>
 
         <!-- ======================================================= -->
-        <!-- VIEW F: SESSION HISTORY & REPORTS                       -->
+        <!-- 6. SESSION HISTORY & ARCHIVES                           -->
         <!-- ======================================================= -->
         <section id="view-history" class="view-panel">
+          <!-- Session Aggregate Stats -->
+          <div class="history-stats-grid">
+            <div class="card stat-card-compact">
+              <span class="stat-compact-label">Total Sessions Recorded</span>
+              <strong class="stat-compact-value" id="history-total-sessions">--</strong>
+            </div>
+            <div class="card stat-card-compact">
+              <span class="stat-compact-label">Overall Average Attendance</span>
+              <strong class="stat-compact-value" id="history-avg-attendance">--%</strong>
+            </div>
+            <div class="card stat-card-compact">
+              <span class="stat-compact-label">Average Activity Score</span>
+              <strong class="stat-compact-value" id="history-avg-engagement">--%</strong>
+            </div>
+          </div>
+
           <div class="card history-card">
             <div class="card-header card-header-flex">
               <div>
                 <h3>Archived Classroom Sessions</h3>
                 <p class="subtitle-small">Historical session reports, attendance records, and downloadable CSV/JSON packages.</p>
               </div>
-              <button class="btn btn-secondary btn-icon" onclick="window.print()">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
-                  <rect x="6" y="14" width="12" height="8"/>
-                </svg>
-                <span>Print Session Summary</span>
-              </button>
+              <div class="history-header-actions">
+                <button class="btn btn-secondary btn-icon" onclick="window.print()">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+                    <rect x="6" y="14" width="12" height="8"/>
+                  </svg>
+                  <span>Print Summary Report</span>
+                </button>
+              </div>
             </div>
 
             <div class="table-container">
@@ -548,6 +789,7 @@
                     <th>Date & Time</th>
                     <th>Enrolled</th>
                     <th>Present</th>
+                    <th>Avg Activity</th>
                     <th>Status</th>
                     <th>Actions</th>
                   </tr>
@@ -561,10 +803,91 @@
         </section>
 
         <!-- ======================================================= -->
-        <!-- VIEW G: SETTINGS & PRIVACY CONTROLS                     -->
+        <!-- 7. STUDENT MANAGEMENT (NEW)                             -->
+        <!-- ======================================================= -->
+        <section id="view-students" class="view-panel">
+          <div class="card students-full-card">
+            <div class="card-header card-header-flex">
+              <div>
+                <h3>Classroom Student Roster</h3>
+                <p class="subtitle-small">Manage enrolled students, section assignments, and biometric verification status.</p>
+              </div>
+              <div class="student-header-actions">
+                <div class="search-input-group">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                  </svg>
+                  <input type="text" id="student-search" class="input-search" placeholder="Search by name or roll no...">
+                </div>
+                <select id="student-filter-section" class="select-filter">
+                  <option value="ALL">All Sections</option>
+                  <option value="Section A">Section A</option>
+                  <option value="Section B">Section B</option>
+                </select>
+                <button class="btn btn-primary btn-icon" id="btn-add-student-modal">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+                  </svg>
+                  <span>Add Student</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="table-container">
+              <table class="data-table" id="table-students">
+                <thead>
+                  <tr>
+                    <th>Student ID</th>
+                    <th>Roll No</th>
+                    <th>Full Name</th>
+                    <th>Section</th>
+                    <th>Biometric Enrolled</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="students-table-body">
+                  <!-- Populated by dashboard.js -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ======================================================= -->
+        <!-- 8. SETTINGS & PRIVACY CONTROLS                          -->
         <!-- ======================================================= -->
         <section id="view-settings" class="view-panel">
           <div class="settings-grid">
+            <!-- Appearance & Theme Card -->
+            <div class="card settings-card">
+              <div class="card-header">
+                <h3>Dashboard Appearance & Theme</h3>
+              </div>
+              <div class="settings-form">
+                <div class="form-group">
+                  <label>Interface Theme Mode</label>
+                  <div class="theme-selection-grid">
+                    <label class="theme-choice-card">
+                      <input type="radio" name="app-theme-choice" value="light" id="theme-radio-light">
+                      <div class="theme-choice-preview light-preview">
+                        <div class="preview-sidebar"></div>
+                        <div class="preview-content"></div>
+                      </div>
+                      <span class="theme-choice-title">Light Mode</span>
+                    </label>
+                    <label class="theme-choice-card">
+                      <input type="radio" name="app-theme-choice" value="dark" id="theme-radio-dark" checked>
+                      <div class="theme-choice-preview dark-preview">
+                        <div class="preview-sidebar"></div>
+                        <div class="preview-content"></div>
+                      </div>
+                      <span class="theme-choice-title">Dark Mode</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <!-- Privacy & Edge Architecture Card -->
             <div class="card settings-card">
               <div class="card-header">
@@ -633,6 +956,31 @@
                 <button class="btn btn-primary" id="btn-save-settings">Save System Settings</button>
               </div>
             </div>
+
+            <!-- Edge Security & Model Verification -->
+            <div class="card settings-card">
+              <div class="card-header">
+                <h3>Local Processing & System Health</h3>
+              </div>
+              <div class="system-health-panel">
+                <div class="health-row">
+                  <span>Host Execution Status</span>
+                  <strong class="health-status-online">Online (Edge Device)</strong>
+                </div>
+                <div class="health-row">
+                  <span>External Cloud Transmission</span>
+                  <strong class="health-status-secure">Zero Biometrics Transmitted</strong>
+                </div>
+                <div class="health-row">
+                  <span>Database Mode</span>
+                  <strong>SQLite (Local WAL Mode)</strong>
+                </div>
+                <div class="health-row">
+                  <span>Vision & Audio Inference Latency</span>
+                  <strong id="settings-health-latency">~12 ms (Local CPU/GPU)</strong>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -645,11 +993,11 @@
   <!-- ======================================================= -->
 
   <!-- 1. Manual Attendance Correction Modal -->
-  <div class="modal-backdrop" id="modal-correction">
+  <div class="modal-backdrop" id="modal-correction" role="dialog" aria-modal="true">
     <div class="modal-card">
       <div class="modal-header">
         <h3>Manual Attendance Override</h3>
-        <button class="btn-close" onclick="closeModal('modal-correction')">&times;</button>
+        <button class="btn-close" onclick="closeModal('modal-correction')" aria-label="Close modal">&times;</button>
       </div>
       <div class="modal-body">
         <p>Overriding attendance for <strong id="modal-student-name">Student Name</strong> (<span id="modal-student-roll">Roll</span>).</p>
@@ -675,11 +1023,11 @@
   </div>
 
   <!-- 2. Audit Trail Modal -->
-  <div class="modal-backdrop" id="modal-audit-trail">
+  <div class="modal-backdrop" id="modal-audit-trail" role="dialog" aria-modal="true">
     <div class="modal-card modal-lg">
       <div class="modal-header">
         <h3>Attendance Override Audit Trail</h3>
-        <button class="btn-close" onclick="closeModal('modal-audit-trail')">&times;</button>
+        <button class="btn-close" onclick="closeModal('modal-audit-trail')" aria-label="Close modal">&times;</button>
       </div>
       <div class="modal-body">
         <table class="data-table">
@@ -705,11 +1053,11 @@
   </div>
 
   <!-- 3. New Session Modal -->
-  <div class="modal-backdrop" id="modal-new-session">
+  <div class="modal-backdrop" id="modal-new-session" role="dialog" aria-modal="true">
     <div class="modal-card">
       <div class="modal-header">
         <h3>Create New Classroom Session</h3>
-        <button class="btn-close" onclick="closeModal('modal-new-session')">&times;</button>
+        <button class="btn-close" onclick="closeModal('modal-new-session')" aria-label="Close modal">&times;</button>
       </div>
       <div class="modal-body">
         <div class="form-group">
@@ -736,7 +1084,87 @@
     </div>
   </div>
 
-  <!-- Dashboard Controller -->
+  <!-- 4. Add Student Modal -->
+  <div class="modal-backdrop" id="modal-add-student" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>Add New Student</h3>
+        <button class="btn-close" onclick="closeModal('modal-add-student')" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="new-student-id">Student ID</label>
+          <input type="text" id="new-student-id" class="input-control" placeholder="e.g. S107">
+        </div>
+        <div class="form-group">
+          <label for="new-student-roll">Roll Number</label>
+          <input type="text" id="new-student-roll" class="input-control" placeholder="e.g. 2024-CS-07">
+        </div>
+        <div class="form-group">
+          <label for="new-student-name">Full Name</label>
+          <input type="text" id="new-student-name" class="input-control" placeholder="e.g. Jordan Lee">
+        </div>
+        <div class="form-group">
+          <label for="new-student-section">Class Section</label>
+          <input type="text" id="new-student-section" class="input-control" value="Section A">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeModal('modal-add-student')">Cancel</button>
+        <button class="btn btn-primary" id="btn-submit-add-student">Enroll Student</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. Edit Student Modal -->
+  <div class="modal-backdrop" id="modal-edit-student" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>Edit Student Information</h3>
+        <button class="btn-close" onclick="closeModal('modal-edit-student')" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="edit-student-id">
+        <div class="form-group">
+          <label for="edit-student-roll">Roll Number</label>
+          <input type="text" id="edit-student-roll" class="input-control">
+        </div>
+        <div class="form-group">
+          <label for="edit-student-name">Full Name</label>
+          <input type="text" id="edit-student-name" class="input-control">
+        </div>
+        <div class="form-group">
+          <label for="edit-student-section">Class Section</label>
+          <input type="text" id="edit-student-section" class="input-control">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeModal('modal-edit-student')">Cancel</button>
+        <button class="btn btn-primary" id="btn-submit-edit-student">Save Changes</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. Delete Student Confirmation Modal -->
+  <div class="modal-backdrop" id="modal-delete-student" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>Confirm Student Deletion</h3>
+        <button class="btn-close" onclick="closeModal('modal-delete-student')" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to remove <strong id="delete-student-name">Student</strong> (<span id="delete-student-id-display">ID</span>) from the classroom roster?</p>
+        <p class="text-danger-small">This action will permanently delete all associated attendance records and cannot be undone.</p>
+        <input type="hidden" id="delete-student-id">
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeModal('modal-delete-student')">Cancel</button>
+        <button class="btn btn-danger" id="btn-confirm-delete-student">Delete Student</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dashboard Master Controller -->
   <script src="/static/js/dashboard.js"></script>
 </body>
 </html>

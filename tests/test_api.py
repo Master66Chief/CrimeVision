@@ -100,6 +100,39 @@ class TestApiEndpoints(unittest.TestCase):
         self.assertEqual(updated["data_retention_days"], 45)
         self.assertTrue(updated["anonymize_faces"])
 
+    def test_student_roster_crud(self):
+        # 1. Get roster
+        roster_res = self.client.get("/api/roster")
+        self.assertEqual(roster_res.status_code, 200)
+        initial_count = len(roster_res.json())
+
+        # 2. Add student
+        new_student = {
+            "student_id": "S999",
+            "roll_no": "2024-TEST-99",
+            "name": "Test Student",
+            "section": "Section B"
+        }
+        add_res = self.client.post("/api/roster", json=new_student)
+        self.assertEqual(add_res.status_code, 200)
+        self.assertEqual(add_res.json()["name"], "Test Student")
+
+        # 3. Update student
+        update_payload = {"name": "Test Student Updated", "section": "Section A"}
+        put_res = self.client.put("/api/roster/S999", json=update_payload)
+        self.assertEqual(put_res.status_code, 200)
+        self.assertEqual(put_res.json()["name"], "Test Student Updated")
+        self.assertEqual(put_res.json()["section"], "Section A")
+
+        # 4. Delete student
+        del_res = self.client.delete("/api/roster/S999")
+        self.assertEqual(del_res.status_code, 200)
+        self.assertEqual(del_res.json()["status"], "success")
+
+        # Verify deletion
+        final_roster = self.client.get("/api/roster").json()
+        self.assertEqual(len(final_roster), initial_count)
+
 
 if __name__ == "__main__":
     unittest.main()

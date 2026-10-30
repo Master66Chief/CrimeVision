@@ -70,6 +70,12 @@ class StudentSchema(BaseModel):
     has_biometric_enrolled: bool = False
 
 
+class StudentUpdateRequest(BaseModel):
+    roll_no: Optional[str] = None
+    name: Optional[str] = None
+    section: Optional[str] = None
+
+
 class AttendanceRecordSchema(BaseModel):
     student_id: str
     roll_no: str

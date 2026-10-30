@@ -101,24 +101,30 @@ class SustainedPresenceEngine:
         
         self._load_roster()
 
+    def load_roster(self):
+        """Public alias to reload enrolled roster from SQLite."""
+        self._load_roster()
+
     def _load_roster(self):
         """Loads enrolled roster from SQLite."""
         roster = get_session_attendance(self.session_id)
+        new_states = {}
         for r in roster:
             s_id = r["student_id"]
             state = StudentPresenceState(
                 student_id=s_id,
                 name=r["name"],
                 roll_no=r["roll_no"],
-                section=r.get("section", "Section A")
+                section=r.get("section", "Section A") if hasattr(r, "get") else r["section"]
             )
-            state.status = r.get("status", "Unverified")
-            state.observed_presence_seconds = r.get("sustained_seconds", 0.0)
-            state.confidence = r.get("confidence", 0.85)
-            state.verification_reason = r.get("verification_reason", "Roster Enrolled")
-            if r.get("manual_correction"):
+            state.status = r["status"] if "status" in r and r["status"] else "Unverified"
+            state.observed_presence_seconds = r["sustained_seconds"] if "sustained_seconds" in r and r["sustained_seconds"] else 0.0
+            state.confidence = r["confidence"] if "confidence" in r and r["confidence"] else 0.85
+            state.verification_reason = r["verification_reason"] if "verification_reason" in r and r["verification_reason"] else "Roster Enrolled"
+            if "manual_correction" in r and r["manual_correction"]:
                 state.manual_override = True
-            self.states[s_id] = state
+            new_states[s_id] = state
+        self.states = new_states
 
     def process_frame(
         self,
@@ -139,7 +145,7 @@ class SustainedPresenceEngine:
         session_elapsed = current_epoch - self.session_start_epoch
         detected_set = set(detected_student_ids)
 
-        for s_id, state in self.states.items():
+        for s_id, state in list(self.states.items()):
             is_present = s_id in detected_set
             state.record_observation(
                 is_observed=is_present,
@@ -198,14 +204,15 @@ class SustainedPresenceEngine:
 
     def get_summary(self) -> Dict[str, Any]:
         """Provides an aggregated summary for API and dashboard presentation."""
-        total = len(self.states)
-        present = sum(1 for s in self.states.values() if s.status == "Present")
-        partial = sum(1 for s in self.states.values() if s.status == "Partial")
-        unverified = sum(1 for s in self.states.values() if s.status == "Unverified")
+        states_list = list(self.states.values())
+        total = len(states_list)
+        present = sum(1 for s in states_list if s.status == "Present")
+        partial = sum(1 for s in states_list if s.status == "Partial")
+        unverified = sum(1 for s in states_list if s.status == "Unverified")
         absent = total - present - partial - unverified
 
         records = []
-        for s in self.states.values():
+        for s in states_list:
             records.append({
                 "student_id": s.student_id,
                 "roll_no": s.roll_no,
